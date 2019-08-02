@@ -35,6 +35,8 @@ router.post('/:id/posts', validateUserId, validatePost, async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const users = await Users.get(req.body);
+        const messageOfTheDay = process.env.MOTD || "Hello World!";
+        
         res.status(200).json(users);
     } catch (error) {
         console.log(error);
